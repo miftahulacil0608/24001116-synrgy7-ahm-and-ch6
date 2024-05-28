@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Chapter Enam</string>
+    <string name="title_movie">Title Movie</string>
+    <string name="duration">Run time: 115 Minutes</string>
+    <string name="title_summary">Overview</string>
+    <string name="release_date">Release Date: 2024-4-7</string>
+    <string name="genres">Animation, Family, Fantasy</string>
+    <string name="vote_average">Vote 8.1</string>
+    <string name="title_team">Team Name</string>
+    <string name="country_league">Country Name</string>
+    <string name="city_team">City Name</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="layout_list">List</string>
+    <string name="layout_grid">Grid</string>
+    <string name="email">Email</string>
+    <string name="email_or_username">Email or Username</string>
+    <string name="password">Password</string>
+    <string name="signIn">Sign In</string>
+    <string name="logout">Logout</string>
+    <string name="favorite">Favorite</string>
+    <string name="profile">Profile</string>
+    <string name="notes">Notes: </string>
+    <string name="save_favorite">Save Favorite?</string>
+    <string name="msg_notes">Email: synergy7chapter4@gmail.com \nPassword: synergy7chapter4\n\nEmail: chapter4@gmail.com\nPassword: chapter4</string>
+    <string name="detail_summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deleniti, id ipsam molestiae sequi soluta. A dolorum nemo non quae reiciendis veritatis. Adipisci corporis culpa dolore dolorum labore ioioiuuihiu uiihyh nodio sapiente? halah kuntulsfafa</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="please_sign_in_to_your_account">Please sign in to your account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="please_fill_in_form_to_continue">Please fill in form to continue</string>
+    <string name="username">Username</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="token">Token</string>
+</resources>

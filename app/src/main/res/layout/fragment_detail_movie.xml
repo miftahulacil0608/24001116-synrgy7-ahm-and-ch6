@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mvvm.fragment.DetailMovieFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/banner_image"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/banner_image"
+        app:layout_constraintEnd_toEndOf="@id/banner_image"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="@id/banner_image"
+        app:layout_constraintTop_toTopOf="@id/banner_image"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/poster_image"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:elevation="3dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ligue_1_logo"
+        app:layout_constraintStart_toEndOf="@id/space"
+        app:layout_constraintTop_toTopOf="@id/space"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RoundedImageForDetail" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btn_favorite"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/add_bookmark_favorite"
+        app:layout_constraintBottom_toBottomOf="@+id/detail_summary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/detail_summary"
+        app:layout_constraintTop_toTopOf="@+id/detail_summary" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="18dp"
+        android:backgroundTint="#31313A"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/poster_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/poster_image"
+        app:layout_constraintTop_toBottomOf="@id/banner_image">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="100dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_movie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/title_movie"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/release_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/release_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/release_date"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/duration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@id/title_movie"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/duration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/duration"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/genres"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@id/release_date"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/genres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/genres"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/vote_average"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@id/duration"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/vote_average"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/vote_average"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@id/genres"
+                app:layout_constraintVertical_bias="0.9" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_summary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/title_summary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/poster_image"
+        app:layout_constraintTop_toBottomOf="@+id/poster_image"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="340dp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/detail_summary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:maxLines="6"
+        android:text="@string/detail_summary"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/title_summary"
+        app:layout_constraintTop_toBottomOf="@+id/title_summary" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_collections"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Collections"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/poster_image"
+        app:layout_constraintTop_toBottomOf="@id/detail_summary" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_collections"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/poster_image"
+        app:layout_constraintTop_toBottomOf="@+id/title_collections"
+        app:layout_constraintVertical_bias="0.9"
+        tools:listitem="@layout/item_view_collections" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

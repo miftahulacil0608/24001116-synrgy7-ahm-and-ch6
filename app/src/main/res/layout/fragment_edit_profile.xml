@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.mvvm.fragment.EditProfileFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_image"
+        android:layout_width="139dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/liverpool"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/username_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:hint="@string/username"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/email_in_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/email"
+        android:textAlignment="center"
+
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/username_profile" />
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/itl_username_in_edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/itl_username_in_edit_profile"
+        app:layout_constraintStart_toStartOf="@+id/itl_username_in_edit_profile"
+        app:layout_constraintTop_toBottomOf="@+id/email_in_edit_profile"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/itl_username_in_edit_profile"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/username"
+        app:layout_constraintBottom_toBottomOf="@id/title_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_username_in_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itl_email_in_edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/itl_username_in_edit_profile"
+        app:layout_constraintStart_toStartOf="@+id/itl_username_in_edit_profile"
+        app:layout_constraintTop_toTopOf="@id/itl_username_in_edit_profile" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/itl_email_in_edit_profile"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/email"
+        app:layout_constraintBottom_toBottomOf="@+id/title_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_email_in_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itl_password_in_edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/itl_email_in_edit_profile"
+        app:layout_constraintStart_toStartOf="@+id/itl_email_in_edit_profile"
+        app:layout_constraintTop_toTopOf="@id/itl_email_in_edit_profile" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/itl_password_in_edit_profile"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:hint="@string/password"
+        app:layout_constraintBottom_toBottomOf="@id/btn_save_profile"
+        app:layout_constraintEnd_toEndOf="@+id/title_password"
+        app:layout_constraintStart_toStartOf="@+id/title_password"
+        app:layout_constraintTop_toTopOf="@id/title_password"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_password__in_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save_profile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save_profile"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/itl_password_in_edit_profile"
+        app:layout_constraintStart_toStartOf="@+id/itl_password_in_edit_profile"
+        app:layout_constraintTop_toTopOf="@id/itl_password_in_edit_profile"
+        app:layout_constraintVertical_bias="0.7" />
+</androidx.constraintlayout.widget.ConstraintLayout>

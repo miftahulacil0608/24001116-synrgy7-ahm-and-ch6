@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/moviesFragment">
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.MoviesFragment"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_moviesFragment_to_detailMovie"
+            app:destination="@id/detailMovieFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_moviesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment_to_detailMovie"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.DetailMovieFragment"
+        android:label="fragment_detail_movie"
+        tools:layout="@layout/fragment_detail_movie">
+        <argument
+            android:name="bannerImage"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="posterImage"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="titleMovie" />
+        <argument
+            android:name="duration"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="genres"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="voteAverage"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="overivewDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+</navigation>
