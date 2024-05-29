@@ -15,7 +15,7 @@ import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreference
 import com.example.recyclerviewwithnavigationcomponent.data.model.dataStore
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalLoginDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.RemoteLoginDataSource
-import com.example.recyclerviewwithnavigationcomponent.domain.LoginRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.repository.LoginRepository
 
 class SplashScreenViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

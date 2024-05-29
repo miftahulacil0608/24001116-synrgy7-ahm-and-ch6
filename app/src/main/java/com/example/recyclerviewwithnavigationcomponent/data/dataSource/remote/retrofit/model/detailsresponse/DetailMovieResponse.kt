@@ -3,7 +3,6 @@ package com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.r
 
 import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.retrofit.model.detailsresponse.anotherdataclass.Collections
 import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.retrofit.model.detailsresponse.anotherdataclass.Genre
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.retrofit.model.detailsresponse.anotherdataclass.ProductionCompany
 import com.google.gson.annotations.SerializedName
 
 data class DetailMovieResponse(
@@ -23,8 +22,6 @@ data class DetailMovieResponse(
     val overview: String,
     @SerializedName("poster_path")
     val posterPath: String,
-    @SerializedName("production_companies")
-    val productionCompanies: List<ProductionCompany>,
     @SerializedName("release_date")
     val releaseDate: String,
     @SerializedName("runtime")

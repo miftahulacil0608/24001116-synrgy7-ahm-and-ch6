@@ -15,9 +15,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.recyclerviewwithnavigationcomponent.R
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.DataItemCollections
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.DetailMovie
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.Movies
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.DataItemCollections
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Movies
 import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentDetailMovieBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.adapter.DetailTeamsRecyclerview
 import com.example.recyclerviewwithnavigationcomponent.ui.mvvm.SharedViewModel
@@ -61,7 +60,7 @@ class DetailMovieFragment : Fragment() {
         }
 
         viewModel.dataDetailMovie.observe(viewLifecycleOwner) {
-            Log.d("getCollection", "dataCollection id: ${it.getCollections?.id}")
+            Log.d("getCollection", "dataCollection id: ${it.getCollections}")
             binding.bannerImage.load(it.backdropPath)
             binding.posterImage.load(it.posterPath)
             binding.titleMovie.text = it.originalTitle
@@ -70,11 +69,13 @@ class DetailMovieFragment : Fragment() {
             binding.duration.text = it.runtime
             binding.voteAverage.text = "Vote: ${it.voteAverage}"
             binding.detailSummary.text = it.overview
-            binding.titleCollections.text = it.getCollections?.name
             if (it.getCollections != null) {
-                viewModel.setDetailCollection(it.getCollections.id)
+                viewModel.setDetailCollection(it.getCollections!!)
+                binding.titleCollections.text = "${it.originalTitle} Collections"
+
             } else {
                 viewModel.setDetailCollection(1)
+                binding.titleCollections.text = "No Collections"
             }
             dataFavoriteMovie = Movies(
                 id = it.id,

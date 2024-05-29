@@ -1,11 +1,13 @@
 package com.example.recyclerviewwithnavigationcomponent.ui.mvvm
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
@@ -20,19 +22,24 @@ import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.Re
 import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.retrofit.MovieService
 import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.retrofit.model.ApiConfig
 import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.DataItemCollections
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.DetailMovie
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.Movies
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.UserProfileData
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.DataItemCollections
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.DetailMovie
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Movies
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.UserProfileData
 import com.example.recyclerviewwithnavigationcomponent.data.model.dataStore
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalLoginDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.repository.movie.RemoteMovieDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.RemoteLoginDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.repository.movie.LocalMovieDataSource
-import com.example.recyclerviewwithnavigationcomponent.domain.MovieRepository
-import com.example.recyclerviewwithnavigationcomponent.domain.LoginRepository
-import com.example.recyclerviewwithnavigationcomponent.domain.UseCase
+import com.example.recyclerviewwithnavigationcomponent.domain.repository.MovieRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.repository.LoginRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.usecase.UseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SharedViewModel(
     private val useCase: UseCase
@@ -94,9 +101,19 @@ class SharedViewModel(
             }
     }
 
-    //data film
-    val dataMovie: LiveData<List<Movies>> = useCase.getListMovieNowPlaying()
 
+    private val _isDataMovieError: MutableLiveData<Throwable> = MutableLiveData()
+    val isDataMovieError: LiveData<Throwable> = _isDataMovieError
+
+    //data film
+    val dataMovie: LiveData<List<Movies>> = liveData {
+        try {
+            emit(useCase.getListMovieNowPlaying())
+        } catch (throwable: Throwable) {
+            _isDataMovieError.value = throwable
+            throw IllegalAccessException(throwable.message)
+        }
+    }
 
     private val _dataCollections: MutableLiveData<List<DataItemCollections>> = MutableLiveData()
     val dataCollections: LiveData<List<DataItemCollections>> = _dataCollections
@@ -123,7 +140,7 @@ class SharedViewModel(
     fun setDetailMovie(movieId: Int) {
         try {
             viewModelScope.launch {
-               _isDataDetailExist.value = false
+                _isDataDetailExist.value = false
                 _dataDetailMovie.value = useCase.setDetailMovie(movieId)
                 _isDataDetailExist.value = true
             }
@@ -139,7 +156,14 @@ class SharedViewModel(
                 //clear list dulu
                 clearDataCollections()
                 // baru diisi ulang
-                updateDataCollections(useCase.getDetailCollections(collectionId))
+                when (collectionId) {
+                    1 -> updateDataCollections(
+                        listOf(
+                            DataItemCollections(null, null, null)
+                        )
+                    )
+                    else -> updateDataCollections(useCase.getDetailCollections(collectionId))
+                }
             }
 
         } catch (throwable: Throwable) {
@@ -154,16 +178,16 @@ class SharedViewModel(
     private val _errorUpdateUserProfile = MutableLiveData<Throwable>()
     val errorUpdateUserProfile: LiveData<Throwable> = _errorUpdateUserProfile
 
-    fun updateAccountUserProfile(username:String,email:String,password:String){
+    fun updateAccountUserProfile(username: String, email: String, password: String) {
         try {
             viewModelScope.launch {
                 _isUpdateUserProfile.value = false
-                useCase.updateDataUserProfile(username,email,password)
+                useCase.updateDataUserProfile(username, email, password)
                 _isUpdateUserProfile.value = true
                 refreshUserProfile()
 
             }
-        }catch (throwable: Throwable){
+        } catch (throwable: Throwable) {
             _errorUpdateUserProfile.value = throwable
             _isUpdateUserProfile.value = false
             throw IllegalAccessException(throwable.message)
@@ -175,14 +199,14 @@ class SharedViewModel(
     private val _userProfile = MutableLiveData<UserProfileData>()
     val userProfile: LiveData<UserProfileData> = _userProfile
 
-    fun refreshUserProfile(){
+    fun refreshUserProfile() {
         try {
             viewModelScope.launch {
                 _isUpdateUserProfile.value = false
                 _userProfile.value = useCase.getAllDataUserProfile()
                 _isUpdateUserProfile.value = true
             }
-        }catch (throwable: Throwable){
+        } catch (throwable: Throwable) {
 
             throw IllegalAccessException(throwable.message)
         }
@@ -205,25 +229,39 @@ class SharedViewModel(
     private val _isFavoriteMovieExists = MutableLiveData<Boolean>()
     val isFavoriteMovieExists: LiveData<Boolean> = _isFavoriteMovieExists
 
-    fun checkFavoriteMovie(id:Int) {
+    fun checkFavoriteMovie(id: Int) {
         viewModelScope.launch {
             _isFavoriteMovieExists.value = useCase.checkMovieFavorite(id)
         }
     }
 
-    fun insertFavoriteMovie(movie: Movies){
+    fun insertFavoriteMovie(movie: Movies) {
         viewModelScope.launch {
             useCase.insertDataMovieFavorite(movie)
             checkFavoriteMovie(movie.id)
         }
     }
 
-    fun deleteFavoriteMovie(id:Int){
+    fun deleteFavoriteMovie(id: Int) {
         viewModelScope.launch {
             useCase.deleteFromFavoriteMovie(id)
             checkFavoriteMovie(id)
+
         }
     }
 
-    val dataFavoriteMovie: LiveData<List<Movies>> = useCase.getAllDataFavoriteMovie()
+
+    private val _isDataFavoriteMovieError: MutableLiveData<Throwable> = MutableLiveData()
+    val isDataFavoriteMovieError: LiveData<Throwable> = _isDataFavoriteMovieError
+
+    val dataFavoriteMovie: LiveData<List<Movies>> = liveData {
+        try {
+            val flow = useCase.getAllDataFavoriteMovies().asLiveData()
+            emitSource(flow)
+
+        } catch (throwable: Throwable) {
+            _isDataFavoriteMovieError.value = throwable
+            throw IllegalAccessException(throwable.message)
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.recyclerviewwithnavigationcomponent.data.dataSource.local
 
 import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.UserProfileData
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.UserProfileData
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalLoginDataSource
 
 class LocalLoginImpl(private val dataStore: AuthPreferences) :

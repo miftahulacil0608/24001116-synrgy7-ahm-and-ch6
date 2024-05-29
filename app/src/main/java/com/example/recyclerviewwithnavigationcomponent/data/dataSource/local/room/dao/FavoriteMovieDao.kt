@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.recyclerviewwithnavigationcomponent.data.dataSource.local.room.entity.FavoriteMovieEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoriteMovieDao {
@@ -13,7 +14,10 @@ interface FavoriteMovieDao {
     suspend fun insertMovieToFavorite(dataMovie: FavoriteMovieEntity)
 
     @Query("SELECT * FROM FavoriteMovieEntity")
-    fun getAllFavoriteMovie(): LiveData<List<FavoriteMovieEntity>>
+    suspend fun getAllFavoriteMovie(): List<FavoriteMovieEntity>
+
+    @Query("SELECT * FROM FavoriteMovieEntity")
+     fun getAllFavoriteMovies(): Flow<List<FavoriteMovieEntity>>
 
     @Query("DELETE FROM FavoriteMovieEntity WHERE id = :id")
     suspend fun deleteMovieFromFavorite(id: Int)

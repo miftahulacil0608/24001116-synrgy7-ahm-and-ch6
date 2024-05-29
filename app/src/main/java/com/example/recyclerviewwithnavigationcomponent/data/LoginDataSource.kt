@@ -1,11 +1,12 @@
 package com.example.recyclerviewwithnavigationcomponent.data
 
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.UserProfileData
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.UserProfileData
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalLoginDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.RemoteLoginDataSource
-import com.example.recyclerviewwithnavigationcomponent.domain.LoginRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.repository.LoginRepository
 
-class LoginDataSource(private val remoteLoginDataSource: RemoteLoginDataSource, private val localLoginDataSource: LocalLoginDataSource):LoginRepository {
+class LoginDataSource(private val remoteLoginDataSource: RemoteLoginDataSource, private val localLoginDataSource: LocalLoginDataSource):
+    LoginRepository {
     override suspend fun createAccount(username: String, email: String, password: String) {
         remoteLoginDataSource.createAccount(username,email,password)
     }

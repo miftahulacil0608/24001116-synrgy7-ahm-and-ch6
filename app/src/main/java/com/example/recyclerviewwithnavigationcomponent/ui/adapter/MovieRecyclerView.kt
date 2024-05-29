@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.recyclerviewwithnavigationcomponent.data.model.dataClass.Movies
+import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Movies
 import com.example.recyclerviewwithnavigationcomponent.databinding.ItemViewMovieBinding
 
 class MovieRecyclerView(
