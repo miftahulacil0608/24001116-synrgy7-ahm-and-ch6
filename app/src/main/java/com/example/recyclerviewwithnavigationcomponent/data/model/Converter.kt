@@ -45,8 +45,8 @@ fun DetailMovieResponse.toDetailMovie(): DetailMovie {
         originalTitle = originalTitle,
         overview = overview,
         posterPath = "https://image.tmdb.org/t/p/w342/$posterPath",
-        productionCompanies = productionCompanies,
         releaseDate = releaseDate,
+        productionCompanies = productionCompanies,
         runtime = "Runtime: $runtime minutes",
         voteAverage = voteAverage,
     )
