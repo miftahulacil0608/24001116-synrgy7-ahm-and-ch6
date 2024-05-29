@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class DetailMovie(
     val id: Int,
     val backdropPath: String,
-    val getCollections: Collections? = null,
+    val getCollections: CollectionsMovie? = null,
     val genres: String,
     val homepage: String,
     val originalTitle: String,
