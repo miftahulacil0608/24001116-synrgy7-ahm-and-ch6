@@ -27,10 +27,4 @@ class MainActivity : AppCompatActivity() {
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
         return host.navController.navigateUp() || super.onSupportNavigateUp()
     }
-
-
-
-
-
-
 }

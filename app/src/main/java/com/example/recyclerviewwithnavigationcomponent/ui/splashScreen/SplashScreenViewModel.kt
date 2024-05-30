@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.recyclerviewwithnavigationcomponent.data.LoginDataSource
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.local.LocalLoginImpl
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.RemoteLoginImpl
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.local.LocalLoginImpl
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.remote.RemoteLoginImpl
 import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences
 import com.example.recyclerviewwithnavigationcomponent.data.model.dataStore
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalLoginDataSource
@@ -32,16 +32,22 @@ class SplashScreenViewModel(private val loginRepository: LoginRepository) : View
                     handle: SavedStateHandle
                 ): T {
 
-                    val authPreferences = AuthPreferences(context.dataStore)
-                    val remoteLoginDataSource: RemoteLoginDataSource = RemoteLoginImpl(authPreferences)
+                    val authPreferences =
+                       AuthPreferences(
+                            context.dataStore
+                        )
+                    val remoteLoginDataSource: RemoteLoginDataSource =
+                        RemoteLoginImpl(
+                            authPreferences
+                        )
                     val localLoginDataSource: LocalLoginDataSource = LocalLoginImpl(
-                        /*SharedPreferences().getSharedPreferences(context.applicationContext)*/
-                        authPreferences
-                    )
-                    val loginRepository: LoginRepository = LoginDataSource(
-                        remoteLoginDataSource = remoteLoginDataSource,
-                        localLoginDataSource = localLoginDataSource,
-                    )
+                            authPreferences
+                        )
+                    val loginRepository: LoginRepository =
+                       LoginDataSource(
+                            remoteLoginDataSource = remoteLoginDataSource,
+                            localLoginDataSource = localLoginDataSource,
+                        )
                     return SplashScreenViewModel(loginRepository = loginRepository) as T
                 }
             }

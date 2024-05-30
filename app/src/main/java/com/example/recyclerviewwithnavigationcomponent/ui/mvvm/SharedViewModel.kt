@@ -1,7 +1,6 @@
 package com.example.recyclerviewwithnavigationcomponent.ui.mvvm
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,15 +11,15 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import androidx.savedstate.SavedStateRegistryOwner
-import com.example.recyclerviewwithnavigationcomponent.data.MovieRepositoryImpl
-import com.example.recyclerviewwithnavigationcomponent.data.LoginDataSource
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.local.LocalLoginImpl
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.local.LocalMovieImpl
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.local.room.AppDatabase
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.RemoteMovieImpl
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.RemoteLoginImpl
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.retrofit.MovieService
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.retrofit.model.ApiConfig
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.local.LocalLoginImpl
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.local.LocalMovieImpl
+
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.local.room.AppDatabase
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.remote.RemoteLoginImpl
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.remote.RemoteMovieImpl
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.remote.retrofit.MovieService
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.remote.retrofit.model.ApiConfig
+
 import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.DataItemCollections
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.DetailMovie
@@ -34,12 +33,7 @@ import com.example.recyclerviewwithnavigationcomponent.data.repository.movie.Loc
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.MovieRepository
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.LoginRepository
 import com.example.recyclerviewwithnavigationcomponent.domain.usecase.UseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SharedViewModel(
     private val useCase: UseCase
@@ -65,29 +59,38 @@ class SharedViewModel(
 
                     val movieService = ApiConfig.getTMBDService().create(MovieService::class.java)
 
-                    val remoteMovieDataSource: RemoteMovieDataSource =
-                        RemoteMovieImpl(
+                    val remoteMovieDataSource: RemoteMovieDataSource = RemoteMovieImpl(
                             movieService
                         )
                     val localMovieDataSource: LocalMovieDataSource =
-                        LocalMovieImpl(appDatabase.favoriteMovieDao())
+                   LocalMovieImpl(
+                            appDatabase.favoriteMovieDao()
+                        )
 
-                    val authPreferences = AuthPreferences(context.dataStore)
+                    val authPreferences =
+                        AuthPreferences(
+                            context.dataStore
+                        )
 
                     val remoteLoginDataSource: RemoteLoginDataSource =
-                        RemoteLoginImpl(authPreferences)
-                    val localLoginDataSource: LocalLoginDataSource = LocalLoginImpl(
-                        authPreferences
-                    )
+                        RemoteLoginImpl(
+                            authPreferences
+                        )
+                    val localLoginDataSource: LocalLoginDataSource =
+                        LocalLoginImpl(
+                            authPreferences
+                        )
 
-                    val movieRepository: MovieRepository = MovieRepositoryImpl(
-                        remoteMovieDataSource = remoteMovieDataSource,
-                        localMovieDataSource = localMovieDataSource,
-                    )
-                    val loginRepository: LoginRepository = LoginDataSource(
-                        remoteLoginDataSource = remoteLoginDataSource,
-                        localLoginDataSource = localLoginDataSource,
-                    )
+                    val movieRepository: MovieRepository =
+                        com.example.recyclerviewwithnavigationcomponent.data.MovieRepositoryImpl(
+                            remoteMovieDataSource = remoteMovieDataSource,
+                            localMovieDataSource = localMovieDataSource,
+                        )
+                    val loginRepository: LoginRepository =
+                        com.example.recyclerviewwithnavigationcomponent.data.LoginDataSource(
+                            remoteLoginDataSource = remoteLoginDataSource,
+                            localLoginDataSource = localLoginDataSource,
+                        )
                     val useCase = UseCase(
                         movieRepository = movieRepository,
                         loginRepository = loginRepository,
@@ -104,6 +107,7 @@ class SharedViewModel(
 
     private val _isDataMovieError: MutableLiveData<Throwable> = MutableLiveData()
     val isDataMovieError: LiveData<Throwable> = _isDataMovieError
+
 
     //data film
     val dataMovie: LiveData<List<Movies>> = liveData {

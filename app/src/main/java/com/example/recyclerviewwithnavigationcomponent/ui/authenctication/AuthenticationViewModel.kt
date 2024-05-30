@@ -10,8 +10,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.savedstate.SavedStateRegistryOwner
 import com.example.recyclerviewwithnavigationcomponent.data.LoginDataSource
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.local.LocalLoginImpl
-import com.example.recyclerviewwithnavigationcomponent.data.dataSource.remote.RemoteLoginImpl
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.local.LocalLoginImpl
+import com.example.recyclerviewwithnavigationcomponent.data.datasource.remote.RemoteLoginImpl
+
 import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences
 import com.example.recyclerviewwithnavigationcomponent.data.model.dataStore
 import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalLoginDataSource
@@ -50,23 +51,6 @@ class AuthenticationViewModel(private val loginRepository: LoginRepository) : Vi
         }
     }
 
-    /*fun loadDataAccount(email: String, password: String) {
-        viewModelScope.launch {
-            try {
-                _loading.value = true
-                val dataToken = loginRepository.login(email, password)
-                loginRepository.saveToken(dataToken)
-                _loading.value = false
-                _success.value = true
-            } catch (throwable: Throwable) {
-                _error.value = throwable
-                _success.value = false
-                Log.d("Error login", "Message: ${throwable.message}")
-            }
-        }
-    }
-*/
-
     fun loadDataAccount(usernameOrEmailInput: String, passwordInput: String){
         viewModelScope.launch {
             try {
@@ -96,16 +80,24 @@ class AuthenticationViewModel(private val loginRepository: LoginRepository) : Vi
                     handle: SavedStateHandle
                 ): T {
 
-                    val authPreferences = AuthPreferences(context.dataStore)
-                    val remoteLoginDataSource: RemoteLoginDataSource = RemoteLoginImpl(authPreferences)
-                    val localLoginDataSource: LocalLoginDataSource = LocalLoginImpl(
-                        /*SharedPreferences().getSharedPreferences(context.applicationContext)*/
-                        dataStore = authPreferences
-                    )
-                    val loginRepository: LoginRepository = LoginDataSource(
-                        remoteLoginDataSource = remoteLoginDataSource,
-                        localLoginDataSource = localLoginDataSource,
-                    )
+                    val authPreferences =
+                        AuthPreferences(
+                            context.dataStore
+                        )
+                    val remoteLoginDataSource: RemoteLoginDataSource =
+                        RemoteLoginImpl(
+                            authPreferences
+                        )
+                    val localLoginDataSource: LocalLoginDataSource =
+                  LocalLoginImpl(
+                            /*SharedPreferences().getSharedPreferences(context.applicationContext)*/
+                            dataStore = authPreferences
+                        )
+                    val loginRepository: LoginRepository =
+                        LoginDataSource(
+                            remoteLoginDataSource = remoteLoginDataSource,
+                            localLoginDataSource = localLoginDataSource,
+                        )
                     return AuthenticationViewModel(loginRepository = loginRepository) as T
                 }
             }
