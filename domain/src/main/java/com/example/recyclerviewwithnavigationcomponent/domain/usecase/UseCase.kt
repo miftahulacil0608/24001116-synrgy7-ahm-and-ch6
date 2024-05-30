@@ -4,14 +4,14 @@ import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Da
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.DetailMovie
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Movies
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.UserProfileData
-import com.example.recyclerviewwithnavigationcomponent.domain.repository.LoginRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.repository.AuthenticationRepository
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 
 class UseCase(
     private val movieRepository: MovieRepository,
-    private val loginRepository: LoginRepository,
+    private val authenticationRepository: AuthenticationRepository,
 ) {
     //Data Movie for Recyclerview
     /*fun getListMovieNowPlaying(): LiveData<List<Movies>> = liveData {
@@ -40,15 +40,15 @@ class UseCase(
 
     //Authentication logic
     suspend fun getAllDataUserProfile(): UserProfileData {
-        return loginRepository.getAllDataUserProfile()
+        return authenticationRepository.getAllDataUserProfile()
     }
 
     suspend fun updateDataUserProfile(username: String, email: String, password: String) {
-        loginRepository.updateUserProfile(username, email, password)
+        authenticationRepository.updateUserProfile(username, email, password)
     }
 
     suspend fun clearDataAuth() {
-        loginRepository.clearDataAccount()
+        authenticationRepository.clearDataAccount()
     }
 
     //Local Database

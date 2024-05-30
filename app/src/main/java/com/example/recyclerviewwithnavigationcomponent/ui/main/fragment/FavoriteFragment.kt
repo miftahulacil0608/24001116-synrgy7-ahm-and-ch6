@@ -1,4 +1,4 @@
-package com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment
+package com.example.recyclerviewwithnavigationcomponent.ui.main.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -10,16 +10,17 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.recyclerviewwithnavigationcomponent.MyApplication
 import com.example.recyclerviewwithnavigationcomponent.R
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Movies
 import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentFavoriteBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.adapter.MovieRecyclerView
-import com.example.recyclerviewwithnavigationcomponent.ui.mvvm.SharedViewModel
+import com.example.recyclerviewwithnavigationcomponent.ui.main.SharedViewModel
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
-    private val viewModel: SharedViewModel by activityViewModels {
-        SharedViewModel.provideFactory(requireActivity(), requireContext())
+    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>{
+        (activity?.application as MyApplication).viewModelFactory
     }
 
     override fun onCreateView(

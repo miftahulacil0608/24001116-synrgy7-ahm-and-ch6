@@ -16,12 +16,6 @@ class AuthenticationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupNavigationComponentWithAppbar()
-
-       /* viewModel.loading.observe(this) { loading ->
-            if (loading) binding.btnFlipper.displayedChild = 0
-            else binding.btnFlipper.displayedChild = 1
-        }*/
-
     }
     private fun setupNavigationComponentWithAppbar(){
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_authentication) as NavHostFragment

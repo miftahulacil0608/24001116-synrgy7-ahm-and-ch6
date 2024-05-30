@@ -49,9 +49,9 @@ android {
 }
 
 dependencies {
-
     implementation(project(":domain"))
-    implementation(project(":data"))
+    implementation(project(":di"))
+
 
     val fragment_version = "1.6.2"
     val nav_version = "2.7.7"

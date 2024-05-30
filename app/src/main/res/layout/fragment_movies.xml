@@ -5,7 +5,7 @@
     android:id="@+id/list_movie"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mvvm.fragment.MoviesFragment">
+    tools:context=".ui.main.fragment.MoviesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_league_group"

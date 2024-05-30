@@ -2,7 +2,7 @@ package com.example.recyclerviewwithnavigationcomponent.data.repository.authenti
 
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.UserProfileData
 
-interface LocalLoginDataSource {
+interface LocalAuthenticationDataSource {
     suspend fun loadAccountToken():String?
     suspend fun clearAccount()
     suspend fun getAllDataUserProfile(): UserProfileData

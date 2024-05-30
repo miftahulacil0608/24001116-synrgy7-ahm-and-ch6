@@ -2,9 +2,9 @@ package com.example.recyclerviewwithnavigationcomponent.data.datasource.local
 
 import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.UserProfileData
-import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalLoginDataSource
+import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.LocalAuthenticationDataSource
 
-class LocalLoginImpl(private val dataStore: AuthPreferences) : LocalLoginDataSource {
+class LocalAuthenticationImpl(private val dataStore: AuthPreferences) : LocalAuthenticationDataSource {
 
     override suspend fun loadAccountToken(): String? {
         return dataStore.loadToken()

@@ -7,11 +7,11 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.recyclerviewwithnavigationcomponent.MyApplication
 import com.example.recyclerviewwithnavigationcomponent.databinding.ActivitySplashScreenBinding
-import com.example.recyclerviewwithnavigationcomponent.ui.mvvm.MainActivity
+import com.example.recyclerviewwithnavigationcomponent.ui.main.MainActivity
 import com.example.recyclerviewwithnavigationcomponent.ui.authenctication.AuthenticationActivity
 
 @SuppressLint("CustomSplashScreen")
@@ -19,9 +19,9 @@ class SplashScreenActivity : AppCompatActivity() {
     private val binding by lazy{
         ActivitySplashScreenBinding.inflate(layoutInflater)
     }
-
-    private val authViewModel by viewModels<SplashScreenViewModel> { SplashScreenViewModel.provideFactory(this, applicationContext
-    ) }
+    private val splashScreenViewModel: SplashScreenViewModel by viewModels<SplashScreenViewModel> {
+        (application as MyApplication).viewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class SplashScreenActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         Handler(Looper.getMainLooper()).postDelayed({
-            authViewModel.loadTokenAccount.observe(this){
+            splashScreenViewModel.loadTokenAccount.observe(this){
                 Log.d("valueAuth", "valueAuth: $it")
                 if (it.isNullOrEmpty()){
                     startActivity(Intent(this,AuthenticationActivity::class.java))

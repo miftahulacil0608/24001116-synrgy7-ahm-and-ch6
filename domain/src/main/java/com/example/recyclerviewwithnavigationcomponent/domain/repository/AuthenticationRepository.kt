@@ -1,7 +1,7 @@
 package com.example.recyclerviewwithnavigationcomponent.domain.repository
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.UserProfileData
 
-interface LoginRepository {
+interface AuthenticationRepository {
     suspend fun createAccount(username:String,email:String,password:String)
     suspend fun loadDataAccount(usernameOrEmailInput:String,passwordInput:String)
     suspend fun loadToken():String?
