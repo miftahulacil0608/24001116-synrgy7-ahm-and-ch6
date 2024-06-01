@@ -13,15 +13,14 @@ import com.example.recyclerviewwithnavigationcomponent.MyApplication
 import com.example.recyclerviewwithnavigationcomponent.databinding.ActivitySplashScreenBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.main.MainActivity
 import com.example.recyclerviewwithnavigationcomponent.ui.authenctication.AuthenticationActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     private val binding by lazy{
         ActivitySplashScreenBinding.inflate(layoutInflater)
     }
-    private val splashScreenViewModel: SplashScreenViewModel by viewModels<SplashScreenViewModel> {
-        (application as MyApplication).viewModelFactory
-    }
+    private val splashScreenViewModel: SplashScreenViewModel by viewModel<SplashScreenViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

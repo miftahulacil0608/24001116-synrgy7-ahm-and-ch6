@@ -21,6 +21,7 @@ import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Mo
 import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentDetailMovieBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.adapter.DetailTeamsRecyclerview
 import com.example.recyclerviewwithnavigationcomponent.ui.main.SharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class DetailMovieFragment : Fragment() {
 
@@ -28,10 +29,7 @@ class DetailMovieFragment : Fragment() {
     private lateinit var recyclerAdapter: DetailTeamsRecyclerview
     private lateinit var dataFavoriteMovie: Movies
 
-    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>{
-        (activity?.application as MyApplication).viewModelFactory
-    }
-
+    private val viewModel: SharedViewModel by activityViewModel<SharedViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

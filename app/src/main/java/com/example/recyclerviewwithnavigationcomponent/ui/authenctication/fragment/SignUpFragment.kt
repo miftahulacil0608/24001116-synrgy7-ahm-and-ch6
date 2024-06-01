@@ -12,13 +12,12 @@ import com.example.recyclerviewwithnavigationcomponent.R
 import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentSignupBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.authenctication.AuthenticationViewModel
 import com.example.recyclerviewwithnavigationcomponent.viewmodelfactory.ViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentSignupBinding
-    private val authViewModel: AuthenticationViewModel by activityViewModels<AuthenticationViewModel> {
-        (activity?.application as MyApplication).viewModelFactory
-    }
+    private val authViewModel: AuthenticationViewModel by viewModel<AuthenticationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

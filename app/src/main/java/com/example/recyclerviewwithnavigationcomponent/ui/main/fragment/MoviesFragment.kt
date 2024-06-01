@@ -21,15 +21,15 @@ import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentMovie
 import com.example.recyclerviewwithnavigationcomponent.ui.adapter.MovieRecyclerView
 import com.example.recyclerviewwithnavigationcomponent.ui.authenctication.AuthenticationActivity
 import com.example.recyclerviewwithnavigationcomponent.ui.main.SharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 //view
 @Suppress("DEPRECATION")
 class MoviesFragment : Fragment() {
     private lateinit var binding: FragmentMoviesBinding
 
-    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>{
-        (activity?.application as MyApplication).viewModelFactory
-    }
+    private val viewModel: SharedViewModel by activityViewModel<SharedViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

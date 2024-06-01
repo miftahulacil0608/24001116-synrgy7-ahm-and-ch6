@@ -13,12 +13,12 @@ import com.example.recyclerviewwithnavigationcomponent.R
 import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentProfileBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.authenctication.AuthenticationActivity
 import com.example.recyclerviewwithnavigationcomponent.ui.main.SharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
-    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel> {
-        (activity?.application as MyApplication).viewModelFactory
-    }
+    private val viewModel: SharedViewModel by activityViewModel<SharedViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

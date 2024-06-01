@@ -16,12 +16,12 @@ import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Mo
 import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentFavoriteBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.adapter.MovieRecyclerView
 import com.example.recyclerviewwithnavigationcomponent.ui.main.SharedViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
-    private val viewModel: SharedViewModel by activityViewModels<SharedViewModel>{
-        (activity?.application as MyApplication).viewModelFactory
-    }
+    private val viewModel: SharedViewModel by activityViewModel<SharedViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -119,4 +119,9 @@ dependencies {
 
     //dataStore
     implementation(libs.androidx.datastore)
+
+    //koin
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 }

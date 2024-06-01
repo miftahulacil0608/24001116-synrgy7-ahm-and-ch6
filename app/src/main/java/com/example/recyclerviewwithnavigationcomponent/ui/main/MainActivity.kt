@@ -6,9 +6,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.recyclerviewwithnavigationcomponent.R
 import com.example.recyclerviewwithnavigationcomponent.databinding.ActivityMainBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 //View
 class MainActivity : AppCompatActivity() {
+
+    private val viewModelMain:SharedViewModel by viewModel<SharedViewModel>()
 
     private val binding by lazy{
         ActivityMainBinding.inflate(layoutInflater)
