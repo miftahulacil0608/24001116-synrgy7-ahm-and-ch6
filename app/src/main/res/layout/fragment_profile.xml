@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mvvm.fragment.ProfileFragment">
+    tools:context=".ui.main.fragment.profileFragment.ProfileFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image_in_profile"
-        android:layout_width="139dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/liverpool"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ligue_1_logo"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,18 +47,16 @@
         app:iconSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_profile_in_profile" />
-
+        app:layout_constraintTop_toBottomOf="@id/username_profile_in_profile" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/icon_email"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
         android:src="@drawable/email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_edit_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/email_in_profile"

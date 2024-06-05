@@ -6,7 +6,7 @@
     app:startDestination="@id/moviesFragment">
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.MoviesFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.MoviesFragment"
         android:label="fragment_movies"
         tools:layout="@layout/fragment_movies">
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.FavoriteFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite">
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailMovieFragment"
-        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.DetailMovieFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.DetailMovieFragment"
         android:label="fragment_detail_movie"
         tools:layout="@layout/fragment_detail_movie">
         <argument
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.ProfileFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.profileFragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.recyclerviewwithnavigationcomponent.ui.mvvm.fragment.EditProfileFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.profileFragment.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" >
         <action

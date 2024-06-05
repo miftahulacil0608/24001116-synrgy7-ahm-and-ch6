@@ -9,18 +9,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.recyclerviewwithnavigationcomponent.MyApplication
 import com.example.recyclerviewwithnavigationcomponent.R
 import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentSignInBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.authenctication.AuthenticationViewModel
-import com.example.recyclerviewwithnavigationcomponent.ui.mvvm.MainActivity
+import com.example.recyclerviewwithnavigationcomponent.ui.main.MainActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignInFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentSignInBinding
 
-    private val viewModel: AuthenticationViewModel by viewModels<AuthenticationViewModel> {
-        AuthenticationViewModel.provideFactory(this, requireContext())
-    }
+    private val viewModel: AuthenticationViewModel by viewModel<AuthenticationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

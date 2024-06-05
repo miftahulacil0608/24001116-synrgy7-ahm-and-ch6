@@ -49,8 +49,9 @@ android {
 }
 
 dependencies {
-
     implementation(project(":domain"))
+    implementation(project(":di"))
+
 
     val fragment_version = "1.6.2"
     val nav_version = "2.7.7"
@@ -118,4 +119,22 @@ dependencies {
 
     //dataStore
     implementation(libs.androidx.datastore)
+
+    //koin
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+
+    //workmanager
+    implementation(libs.androidx.workmanager)
+    implementation(libs.androidx.core)
+
+    //filepicker
+    implementation(libs.filepicker)
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
+
+    //CircleImageView
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+
 }
