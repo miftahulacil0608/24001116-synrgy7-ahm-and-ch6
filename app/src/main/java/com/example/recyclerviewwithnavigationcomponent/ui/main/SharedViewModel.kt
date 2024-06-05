@@ -87,49 +87,6 @@ class SharedViewModel(
         }
     }
 
-    //isUpdateUserProfile
-    private val _errorUpdateUserProfile = MutableLiveData<Throwable>()
-    val errorUpdateUserProfile: LiveData<Throwable> = _errorUpdateUserProfile
-
-    fun updateAccountUserProfile(username: String, email: String, password: String) {
-        try {
-            viewModelScope.launch {
-                useCase.updateDataUserProfile(username, email, password)
-                refreshUserProfile()
-            }
-        } catch (throwable: Throwable) {
-            _errorUpdateUserProfile.value = throwable
-            throw IllegalAccessException(throwable.message)
-        }
-
-
-    }
-
-    private val _userProfile = MutableLiveData<UserProfileData>()
-    val userProfile: LiveData<UserProfileData> = _userProfile
-
-    fun refreshUserProfile() {
-        try {
-            viewModelScope.launch {
-                _userProfile.value = useCase.getAllDataUserProfile()
-            }
-        } catch (throwable: Throwable) {
-            throw IllegalAccessException(throwable.message)
-        }
-    }
-
-
-    private var _successLogout = MutableLiveData<Boolean>()
-    val successLogout: LiveData<Boolean> = _successLogout
-
-    fun logout() {
-        viewModelScope.launch {
-            _successLogout.value = false
-            useCase.clearDataAuth()
-            _successLogout.value = true
-        }
-    }
-
     //Local Database
 
     private val _isFavoriteMovieExists = MutableLiveData<Boolean>()
@@ -170,4 +127,6 @@ class SharedViewModel(
             throw IllegalAccessException(throwable.message)
         }
     }
+
+
 }

@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.ProfileFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.profileFragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.EditProfileFragment"
+        android:name="com.example.recyclerviewwithnavigationcomponent.ui.main.fragment.profileFragment.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" >
         <action

@@ -4,43 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragment.EditProfileFragment">
+    tools:context=".ui.main.fragment.profileFragment.EditProfileFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="139dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/liverpool"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ligue_1_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_changes_image_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Image"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/username_profile"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+    <LinearLayout
+        android:id="@+id/btn_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_changes_image_profile">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel_work"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:indeterminate="true"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/go_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go" />
+
+        <Button
+            android:id="@+id/see_file_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/see_file"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </LinearLayout>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/username_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
         android:hint="@string/username"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_image" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/email_in_edit_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="@string/email"
-        android:textAlignment="center"
-
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_linear_layout" />
 
 
 
@@ -50,11 +92,10 @@
         android:layout_height="wrap_content"
         android:text="@string/username"
         android:textSize="16sp"
-        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/itl_username_in_edit_profile"
         app:layout_constraintEnd_toEndOf="@+id/itl_username_in_edit_profile"
         app:layout_constraintStart_toStartOf="@+id/itl_username_in_edit_profile"
-        app:layout_constraintTop_toBottomOf="@+id/email_in_edit_profile"
+        app:layout_constraintTop_toBottomOf="@+id/username_profile"
         app:layout_constraintVertical_bias="0.2" />
 
     <com.google.android.material.textfield.TextInputLayout

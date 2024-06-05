@@ -40,6 +40,8 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity)
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -63,4 +65,9 @@ dependencies {
     implementation(libs.androidx.roomRuntime)
     ksp(libs.androidx.roomCompilerKsp)
     implementation(libs.androidx.roomCoroutines)
+
+    //workmangaer
+    implementation(libs.androidx.workmanager)
+    implementation(libs.androidx.core)
+
 }

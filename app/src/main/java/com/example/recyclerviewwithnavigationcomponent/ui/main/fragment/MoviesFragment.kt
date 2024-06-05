@@ -43,7 +43,6 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showRecyclerView()
-        logout()
     }
 
 
@@ -99,14 +98,6 @@ class MoviesFragment : Fragment() {
 
     }
 
-    private fun logout() {
-        viewModel.successLogout.observe(viewLifecycleOwner) { isLogout ->
-            if (isLogout.equals(true)) {
-                startActivity(Intent(requireActivity(), AuthenticationActivity::class.java))
-                requireActivity().finish()
-            }
-        }
-    }
 
 
     private fun clicked(data: Movies) {

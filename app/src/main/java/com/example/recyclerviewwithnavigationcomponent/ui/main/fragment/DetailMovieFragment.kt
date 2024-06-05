@@ -11,14 +11,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.example.recyclerviewwithnavigationcomponent.MyApplication
 import com.example.recyclerviewwithnavigationcomponent.R
+import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentDetailMovieBinding
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.DataItemCollections
 import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Movies
-import com.example.recyclerviewwithnavigationcomponent.databinding.FragmentDetailMovieBinding
 import com.example.recyclerviewwithnavigationcomponent.ui.adapter.DetailTeamsRecyclerview
 import com.example.recyclerviewwithnavigationcomponent.ui.main.SharedViewModel
 import org.koin.androidx.viewmodel.ext.android.activityViewModel

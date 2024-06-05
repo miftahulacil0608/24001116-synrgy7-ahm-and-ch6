@@ -1,5 +1,6 @@
 package com.example.recyclerviewwithnavigationcomponent.di
 
+import android.app.Application
 import androidx.room.Room
 import com.example.recyclerviewwithnavigationcomponent.data.AuthenticationDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.MovieRepositoryImpl
@@ -69,12 +70,12 @@ val koinModule = module {
     }
 
     //localMovieDataSource
-    single<LocalMovieDataSource>{
+    single<LocalMovieDataSource> {
         LocalMovieImpl((get() as AppDatabase).favoriteMovieDao())
     }
 
     //movieRepository
-    single<MovieRepository>{
+    single<MovieRepository> {
         MovieRepositoryImpl(
             remoteMovieDataSource = get(),
             localMovieDataSource = get(),
@@ -82,7 +83,7 @@ val koinModule = module {
     }
 
     //useCase
-    single<UseCase>{
+    single<UseCase> {
         UseCase(
             movieRepository = get(),
             authenticationRepository = get()

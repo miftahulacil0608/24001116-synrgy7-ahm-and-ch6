@@ -11,7 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 //View
 class MainActivity : AppCompatActivity() {
 
-    private val viewModelMain:SharedViewModel by viewModel<SharedViewModel>()
+    //private val viewModelMain:SharedViewModel by viewModel<SharedViewModel>()
 
     private val binding by lazy{
         ActivityMainBinding.inflate(layoutInflater)
