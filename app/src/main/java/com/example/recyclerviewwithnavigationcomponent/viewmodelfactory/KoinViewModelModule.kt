@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 val koinViewModelModule = module {
     viewModel { SharedViewModel(useCase = get()) }
-    viewModel { AuthenticationViewModel(authenticationRepository = get()) }
+    viewModel { AuthenticationViewModel(authUseCase = get()) }
     viewModel { SplashScreenViewModel(authenticationRepository = get()) }
     viewModel { BlurViewModel(get())}
     viewModel {ProfileViewModel(useCase = get(),application = get())}

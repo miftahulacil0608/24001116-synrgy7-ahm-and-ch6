@@ -44,6 +44,8 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation(libs.material)
     testImplementation(libs.junit)
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
@@ -69,5 +71,9 @@ dependencies {
     //workmangaer
     implementation(libs.androidx.workmanager)
     implementation(libs.androidx.core)
+
+    implementation(libs.mocK)
+    implementation(libs.coroutines.test)
+
 
 }

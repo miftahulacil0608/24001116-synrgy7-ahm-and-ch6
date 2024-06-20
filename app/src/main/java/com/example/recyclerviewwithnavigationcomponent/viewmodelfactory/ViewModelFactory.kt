@@ -11,7 +11,7 @@ class ViewModelFactory(private val module: Module) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when (modelClass) {
             AuthenticationViewModel::class.java -> {
-                AuthenticationViewModel(authenticationRepository = module.authenticationRepository) as T
+                AuthenticationViewModel(authUseCase = module.authUseCase) as T
             }
 
             SplashScreenViewModel::class.java -> {

@@ -1,7 +1,10 @@
 package com.example.recyclerviewwithnavigationcomponent.data.datasource.remote
 
-class RemoteAuthenticationImpl(private val dataStore: com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences) :
-    com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.RemoteAuthenticationDataSource {
+import com.example.recyclerviewwithnavigationcomponent.data.model.AuthPreferences
+import com.example.recyclerviewwithnavigationcomponent.data.repository.authentication.RemoteAuthenticationDataSource
+
+class RemoteAuthenticationImpl(private val dataStore: AuthPreferences) :
+    RemoteAuthenticationDataSource {
 
     override suspend fun createAccount(
         usernameInput: String,
@@ -15,6 +18,6 @@ class RemoteAuthenticationImpl(private val dataStore: com.example.recyclerviewwi
         usernameOrEmailInput: String,
         passwordInput: String
     ) {
-        return dataStore.loadDataAccount(usernameOrEmailInput, passwordInput)
+        dataStore.loadDataAccount(usernameOrEmailInput, passwordInput)
     }
 }

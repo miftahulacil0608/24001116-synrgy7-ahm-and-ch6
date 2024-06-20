@@ -16,6 +16,8 @@ plugins {
     id("land.sungbin.dependency.graph.plugin") version "1.1.0"
 }
 
+
+
 dependencyGraphConfig {
     projectName = null
     outputFormat = OutputFormat.PNG

@@ -36,6 +36,18 @@ class SignUpFragment : Fragment(), View.OnClickListener {
 
 
         binding.btnSignInInFragmentSignUp.setOnClickListener(this)
+
+        authViewModel.loading.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            binding.btnSignupInFragmentSignUp.visibility = if(it) View.GONE else View.VISIBLE
+
+        }
+
+        authViewModel.success.observe(viewLifecycleOwner) {
+            if(it){
+                findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+            }
+        }
     }
 
     override fun onClick(v: View) {
@@ -54,7 +66,6 @@ class SignUpFragment : Fragment(), View.OnClickListener {
                     val email = binding.edtEmail.text.toString()
                     val password = binding.edtPassword.text.toString()
                     authViewModel.createAccount(username, email, password)
-                    findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
                 }
             }
 

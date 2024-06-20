@@ -19,6 +19,7 @@ import com.example.recyclerviewwithnavigationcomponent.data.repository.movie.Loc
 import com.example.recyclerviewwithnavigationcomponent.data.repository.movie.RemoteMovieDataSource
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.AuthenticationRepository
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.MovieRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.usecase.AuthUseCase
 import com.example.recyclerviewwithnavigationcomponent.domain.usecase.UseCase
 
 class Module(context: Context) {
@@ -81,5 +82,9 @@ class Module(context: Context) {
     //useCase
     val useCase: UseCase by lazy {
         UseCase(movieRepository = movieRepository, authenticationRepository = authenticationRepository)
+    }
+
+    val authUseCase: AuthUseCase by lazy {
+        AuthUseCase(authRepository = authenticationRepository)
     }
 }

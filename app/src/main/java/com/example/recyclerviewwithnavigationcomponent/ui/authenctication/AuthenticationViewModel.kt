@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.recyclerviewwithnavigationcomponent.domain.repository.AuthenticationRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.usecase.AuthUseCase
+import com.example.recyclerviewwithnavigationcomponent.workers.sleep
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class AuthenticationViewModel(private val authenticationRepository: AuthenticationRepository) :
-    ViewModel() {
+class AuthenticationViewModel(private val authUseCase: AuthUseCase) : ViewModel() {
+
 
     private var _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -20,22 +22,17 @@ class AuthenticationViewModel(private val authenticationRepository: Authenticati
     private var _error = MutableLiveData<Throwable>()
     val error: LiveData<Throwable> = _error
 
-    private var _isLoadingCreateAccount = MutableLiveData<Boolean>()
-    val isLoadingCreateAccount: LiveData<Boolean> = _isLoadingCreateAccount
-
-    private var _isSuccessCreateAccount = MutableLiveData<Boolean>()
-    val isSuccessCreateAccount: LiveData<Boolean> = _isSuccessCreateAccount
 
     fun createAccount(usernameInput: String, emailInput: String, passwordInput: String) {
         viewModelScope.launch {
             try {
-                _isLoadingCreateAccount.value = true
-                authenticationRepository.createAccount(usernameInput, emailInput, passwordInput)
-                _isLoadingCreateAccount.value = false
-                _isSuccessCreateAccount.value = true
+                _loading.value = true
+                authUseCase.createAccount(usernameInput, emailInput, passwordInput)
+                delay(1000)
+                _loading.value = false
+                _success.value = true
             } catch (throwable: Throwable) {
-                _isSuccessCreateAccount.value = false
-                throw IllegalAccessError(throwable.message)
+                _error.value = throwable
             }
         }
     }
@@ -44,14 +41,12 @@ class AuthenticationViewModel(private val authenticationRepository: Authenticati
         viewModelScope.launch {
             try {
                 _loading.value = true
-                authenticationRepository.loadDataAccount(usernameOrEmailInput, passwordInput)
+                authUseCase.loadDataAccount(usernameOrEmailInput, passwordInput)
+                delay(1000)
                 _loading.value = false
                 _success.value = true
-
             } catch (throwable: Throwable) {
                 _error.value = throwable
-                _success.value = false
-                Log.d("Error login", "Message: ${throwable.message}")
             }
         }
     }

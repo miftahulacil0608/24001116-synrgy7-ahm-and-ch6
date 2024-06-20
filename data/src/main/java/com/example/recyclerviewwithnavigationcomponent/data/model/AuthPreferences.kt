@@ -33,9 +33,9 @@ class AuthPreferences(private val dataStore: DataStore<Preferences>) {
 
 
     //tahap 4 read user auth
-    private val username: Flow<String?> =
+    val username: Flow<String?> =
         dataStore.data.map { preferences -> preferences[USERNAME_KEY] }
-    private val password: Flow<String?> =
+    val password: Flow<String?> =
         dataStore.data.map { preferences -> preferences[PASSWORD_KEY] }
     private val email: Flow<String?> =
         dataStore.data.map { preferences -> preferences[EMAIL_KEY] }

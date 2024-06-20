@@ -136,5 +136,9 @@ dependencies {
     //CircleImageView
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
+    implementation(libs.mocK)
+    implementation(libs.coroutines.test)
+    implementation(libs.arch.testing)
+
 
 }

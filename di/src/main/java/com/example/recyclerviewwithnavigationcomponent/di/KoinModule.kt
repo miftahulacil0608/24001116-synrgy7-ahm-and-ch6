@@ -19,6 +19,7 @@ import com.example.recyclerviewwithnavigationcomponent.data.repository.movie.Loc
 import com.example.recyclerviewwithnavigationcomponent.data.repository.movie.RemoteMovieDataSource
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.AuthenticationRepository
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.MovieRepository
+import com.example.recyclerviewwithnavigationcomponent.domain.usecase.AuthUseCase
 import com.example.recyclerviewwithnavigationcomponent.domain.usecase.UseCase
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
@@ -88,5 +89,9 @@ val koinModule = module {
             movieRepository = get(),
             authenticationRepository = get()
         )
+    }
+
+    single<AuthUseCase> {
+        AuthUseCase(authRepository = get())
     }
 }
