@@ -10,7 +10,6 @@ import com.example.recyclerviewwithnavigationcomponent.domain.model.dataclass.Mo
 import com.example.recyclerviewwithnavigationcomponent.databinding.ItemViewMovieBinding
 
 class MovieRecyclerView(
-
     val itemClicked: (Movies) -> Unit
 ) : ListAdapter<Movies, MovieRecyclerView.ViewHolder>(
     DIFF_CALLBACK

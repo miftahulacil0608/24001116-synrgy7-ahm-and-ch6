@@ -24,6 +24,8 @@ filepicker = "0.2.5"
 mocK = "5.2.1"
 coroutines_test = "1.8.0"
 arch = "2.2.0"
+chuckerVersion = "4.0.0"
+
 
 
 
@@ -55,7 +57,8 @@ filepicker = { group = "io.github.chochanaresh", name = "filepicker", version.re
 mocK = {group="org.mockito.kotlin",name="mockito-kotlin",version.ref="mocK"}
 coroutines_test = {group="org.jetbrains.kotlinx",name="kotlinx-coroutines-test",version.ref = "coroutines_test"}
 arch-testing = {group="androidx.arch.core",name="core-testing",version.ref="arch"}
-
+chucker_debug = {group="com.github.chuckerteam.chucker",name="library",version.ref="chuckerVersion"}
+chucker_relesase = {group="com.github.chuckerteam.chucker",name="library-no-op",version.ref="chuckerVersion"}
 
 
 [plugins]

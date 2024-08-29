@@ -2,6 +2,7 @@ package com.example.recyclerviewwithnavigationcomponent.di
 
 import android.app.Application
 import androidx.room.Room
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.recyclerviewwithnavigationcomponent.data.AuthenticationDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.MovieRepositoryImpl
 import com.example.recyclerviewwithnavigationcomponent.data.datasource.local.LocalAuthenticationImpl
@@ -21,6 +22,8 @@ import com.example.recyclerviewwithnavigationcomponent.domain.repository.Authent
 import com.example.recyclerviewwithnavigationcomponent.domain.repository.MovieRepository
 import com.example.recyclerviewwithnavigationcomponent.domain.usecase.AuthUseCase
 import com.example.recyclerviewwithnavigationcomponent.domain.usecase.UseCase
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -60,9 +63,15 @@ val koinModule = module {
         ).build()
     }
 
+    //chucker
+
+    single {
+        ChuckerInterceptor.Builder(context = androidContext()).build()
+    }
+
     //movieService
     single<MovieService> {
-        ApiConfig.getTMBDService().create(MovieService::class.java)
+        ApiConfig.getTMBDService(get()).create(MovieService::class.java)
     }
 
     //remoteMovieDataSource

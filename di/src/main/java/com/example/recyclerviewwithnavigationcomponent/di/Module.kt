@@ -2,6 +2,7 @@ package com.example.recyclerviewwithnavigationcomponent.di
 
 import android.content.Context
 import androidx.room.Room
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.recyclerviewwithnavigationcomponent.data.AuthenticationDataSource
 import com.example.recyclerviewwithnavigationcomponent.data.MovieRepositoryImpl
 import com.example.recyclerviewwithnavigationcomponent.data.datasource.local.LocalAuthenticationImpl
@@ -56,9 +57,11 @@ class Module(context: Context) {
         ).build()
     }
 
+    private val provideChuckerInterceptor = ChuckerInterceptor.Builder(context).build()
+
     //movieService
     private val movieService:MovieService by lazy {
-        ApiConfig.getTMBDService().create(MovieService::class.java)
+        ApiConfig.getTMBDService(provideChuckerInterceptor).create(MovieService::class.java)
     }
 
     //remoteMovieDataSource

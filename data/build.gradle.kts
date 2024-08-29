@@ -76,4 +76,7 @@ dependencies {
     implementation(libs.coroutines.test)
 
 
+    releaseImplementation(libs.chucker.relesase)
+    debugImplementation(libs.chucker.debug)
+
 }

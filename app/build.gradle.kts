@@ -27,6 +27,12 @@ android {
     }
 
     buildTypes {
+        debug{
+
+        }
+        create("staging"){
+
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(

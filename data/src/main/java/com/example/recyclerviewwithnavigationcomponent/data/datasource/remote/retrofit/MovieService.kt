@@ -12,14 +12,12 @@ import retrofit2.http.Query
 interface MovieService {
     //headersnya masih manual, tapi bisa diubah nantinya
     @GET("movie/now_playing")
-    @Headers(ApiConfig.AUTHORIZATION, ApiConfig.ACCEPT, ApiConfig.ACCEPT)
     suspend fun getNowPlayingMovies(
         @Query("language") language: String = "en-US",
         @Query("page") page: Int = 1,
     ): MovieNowPlayingResponse
 
     @GET("movie/{movie_id}")
-    @Headers(ApiConfig.AUTHORIZATION, ApiConfig.ACCEPT, ApiConfig.ACCEPT)
     suspend fun getMovieDetail(
         @Path("movie_id") movieId: Int,
         @Query("append_to_response") appendToResponse: String? = null,
@@ -27,10 +25,9 @@ interface MovieService {
     ): DetailMovieResponse
 
     @GET("collection/{collection_id}")
-    @Headers(ApiConfig.AUTHORIZATION, ApiConfig.ACCEPT, ApiConfig.ACCEPT)
     suspend fun getCollectionDetail(
-     @Path("collection_id") collectionId: Int,
-     @Query("language") language: String = "en-US"
+        @Path("collection_id") collectionId: Int,
+        @Query("language") language: String = "en-US"
     ): DetailMovieCollections
 
 
